@@ -1,0 +1,29 @@
+@(semanas: List[Semana], semanaForm: Form[Task])
+
+@helper.form(routes.Application.registrar()){
+	@helper.inputText(semanaForm("name"), '_label -> "Tarefa")
+	
+	@helper.inputText(semanaForm("week"), '_label -> "Semana")
+
+	<input type="submit" value="registrar tarefa" />
+}
+
+<style>
+	li * {
+		display: inline;
+	}
+</style>
+<ul>
+	@for(semana <- semanas) {
+		<li @if(semana.complete){ style="background:green" }>@semana.name - @semana.week
+		@if(!semana.complete) {
+			@helper.form(routes.Application.complete(semana.id)) {
+				<input type="submit" value='completa'/>
+			}
+		}
+		@helper.form(routes.Application.delete(semana.id)) {
+			<input type="submit" value="deletar" />
+		}
+		</li>
+	}
+</ul>
