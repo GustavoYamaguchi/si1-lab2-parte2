@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.*;
@@ -35,8 +36,33 @@ public class Semana extends Model{
 
 	public void setMetas(List<Meta> metas) {
 		this.metas = metas;
+		ordenaMetas();
 	}
-
+	
+	public void addMeta(Meta meta){
+		metas.add(meta);
+		ordenaMetas();
+	}
+	
+	public void removeMeta(Meta meta){
+		metas.remove(meta);
+		ordenaMetas();
+	}
+	
+	public boolean searchMeta(Meta meta){
+		if(metas.contains(meta))
+			return true;
+		return false;
+	}
+	
+	public int semanaSize(){
+		return metas.size();
+	}
+	
+	private void ordenaMetas(){
+		Collections.sort(metas);
+	}
+	
 	@Override
 	public boolean equals(Object o){
 		if(o instanceof Semana){

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import play.db.ebean.Model;
 
 @Entity
-public class Meta extends Model{
+public class Meta extends Model implements Comparable<Meta>{
 	
 	@Id
 	private Long id;
@@ -89,5 +89,14 @@ public class Meta extends Model{
 	@Override
 	public String toString(){
 		return "Id: " + getId() + "; Descricao: " + getDescricao() + "; Situcao: " + getSitucaoString();
+	}
+
+	@Override
+	public int compareTo(Meta outraMeta) {
+		if(prioridade > outraMeta.getPrioridade())
+			return -1;
+		else if(prioridade > outraMeta.getPrioridade())
+			return 1;
+		return 0;
 	}
 }
