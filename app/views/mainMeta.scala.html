@@ -1,0 +1,19 @@
+@(formMeta: Form[Meta])
+@import helper._
+
+@main("Organizador de Metas"){
+	@helper.form(routes.Application.novaMeta){
+		@inputText(formMeta("descricaoDaMeta"), '_label -> "Descricao da Meta")
+		@inputText(formMeta("semana"), '_label -> "Semana (1 ~ 6)")
+		@inputText(formMeta("prioridade"), '_label -> "Prioridade (1 ~ 5)")
+		<input type="submit" value="Criar">
+	}
+	<!-- 
+	<form action="/organizadordemetas" method="POST">
+		@inputText(formMeta("descricaoDaMeta"), '_label -> "Descricao da Meta")
+		@inputText(formMeta("semana"), '_label -> "Semana (1 ~ 6)")
+		@inputText(formMeta("prioridade"), '_label -> "Prioridade (1 ~ 5)")
+		<input type="submit" value="Criar">
+	</form>
+	 -->
+}

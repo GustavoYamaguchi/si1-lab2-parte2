@@ -4,11 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /                           controllers.Application.index()
-GET		/semanas					controllers.Application.semanas()
-POST	/registrar					controllers.Application.registrar()
-POST	/complete/:id				controllers.Application.complete(id: Long)
-POST	/delete/:id					controllers.Application.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET		/meta						controllers.Application.mainMeta()
+POST	/meta						controllers.Application.novaMeta()

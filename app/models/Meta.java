@@ -2,27 +2,42 @@ package models;
 
 import javax.persistence.*;
 
+import play.data.Form;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
+import play.mvc.Content;
 
 @Entity
 public class Meta extends Model implements Comparable<Meta>{
 	
-	@Id
+	@Id @GeneratedValue
 	private Long id;
-	
+
 	private final int PENDENTE = 0;
 	private final int ALCANCADA = 1;
-	
+
 	@OneToOne(mappedBy = "Meta")
 	@JoinColumn
 	private String descricao;
 	private int situacao;
 	private int prioridade;
+	private int semana;
 	
-	public Meta(String descricao, int situacao, int prioridade){
+	public int getSemana() {
+		return semana;
+	}
+
+	public void setSemana(int semana) {
+		if(semana> 0 & semana <7)
+			this.semana = semana;
+	}
+
+	public Meta(){}
+
+	public Meta(String descricao, int prioridade, int semana){
+		situacao = PENDENTE;
 		this.descricao = descricao;
-		if(situacao == PENDENTE | situacao ==ALCANCADA)
-			this.situacao = situacao;
+		setSemana(semana);
 		setPrioridade(prioridade);
 	}
 
@@ -31,7 +46,7 @@ public class Meta extends Model implements Comparable<Meta>{
 	}
 
 	public void setPrioridade(int prioridade) {
-		if(prioridade >= 0 & prioridade <= 5)
+		if(prioridade >= 1 & prioridade <= 5)
 			this.prioridade = prioridade;
 	}
 
@@ -66,7 +81,7 @@ public class Meta extends Model implements Comparable<Meta>{
 	public int getALCANCADA() {
 		return ALCANCADA;
 	}
-	
+
 	@Override
 	public boolean equals(Object o){
 		if(o instanceof Meta){
@@ -75,7 +90,7 @@ public class Meta extends Model implements Comparable<Meta>{
 		}
 		return false;
 	}
-	
+
 	public String getSitucaoString(){
 		if(situacao == PENDENTE){
 			return "pendente";
@@ -85,7 +100,7 @@ public class Meta extends Model implements Comparable<Meta>{
 		}
 		else return "";
 	}
-	
+
 	@Override
 	public String toString(){
 		return "Id: " + getId() + "; Descricao: " + getDescricao() + "; Situcao: " + getSitucaoString();
