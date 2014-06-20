@@ -3,7 +3,7 @@
 
 @main("Organizador de Metas"){
 	@helper.form(routes.Application.novaMeta){
-		@inputText(formMeta("descricaoDaMeta"), '_label -> "Descricao da Meta")
+		@inputText(formMeta("descricao"), '_label -> "Descricao da Meta")
 		@inputText(formMeta("semana"), '_label -> "Semana (1 ~ 6)")
 		@inputText(formMeta("prioridade"), '_label -> "Prioridade (1 ~ 5)")
 		<input type="submit" value="Criar">

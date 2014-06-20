@@ -1,10 +1,12 @@
 package models;
 
+import java.util.*;
+
 import javax.persistence.*;
 
 import play.data.Form;
-import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
+import play.data.validation.Constraints.*;
+import play.db.ebean.*;
 import play.mvc.Content;
 
 @Entity
@@ -22,6 +24,8 @@ public class Meta extends Model implements Comparable<Meta>{
 	private int situacao;
 	private int prioridade;
 	private int semana;
+	
+	public static Finder<Long, Meta> find = new Finder<Long, Meta>(Long.class, Meta.class);
 	
 	public int getSemana() {
 		return semana;
@@ -80,6 +84,18 @@ public class Meta extends Model implements Comparable<Meta>{
 
 	public int getALCANCADA() {
 		return ALCANCADA;
+	}
+	
+	public static List<Meta> all() {
+	  return find.all();
+	}
+
+	public static void create(Meta meta) {
+	  meta.save();
+	}
+
+	public static void delete(Long id) {
+	  find.ref(id).delete();
 	}
 
 	@Override
