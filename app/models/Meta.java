@@ -32,7 +32,7 @@ public class Meta extends Model implements Comparable<Meta>{
 	}
 
 	public void setSemana(int semana) {
-		if(semana> 0 & semana <7)
+		if(semana> 0 && semana <7)
 			this.semana = semana;
 	}
 
@@ -50,7 +50,7 @@ public class Meta extends Model implements Comparable<Meta>{
 	}
 
 	public void setPrioridade(int prioridade) {
-		if(prioridade >= 1 & prioridade <= 5)
+		if(prioridade >= 1 && prioridade <= 5)
 			this.prioridade = prioridade;
 	}
 
