@@ -1,48 +1,7 @@
-@(metas: List[Meta])
+@(message: String)
 
-@main("Organizador de Metas") {
-	
-	@if(metas.isEmpty){
-	    <h3>Nao ha metas cadastradas</h3>
-	  } else {
-	  	@for(i <- 1 to 6){
-	  		<h3>Semana @i</h3>
-		  	<table>
-				<tr>
-			    	<th>id</th>
-			        <th>descricao</th>
-			        <th>prioridade</th>
-			    </tr>
-			    @for(meta <- metas){
-			    	@if(meta.getSemana() == i){
-			      	<tr>
-				        <td>@meta.getId</td>
-				        <td>@meta.getDescricao</td>
-				        <td>@meta.getPrioridade</td>
-				        @println(meta.getPrioridade)
-				    </tr>
-				    }
-		    	}
-	    	</table>
-	  	}
-	  	<!-- 
-		    <h3>Cupons Cadastrados:</h3>
-		    <table>
-		      <tr>
-		        <th>id</th>
-		        <th>cliente</th>
-		        <th>valor</th>
-		      </tr>
-		    @for(meta <- metas){
-		      <tr>
-		        <td>@meta.getId</td>
-		        <td>@meta.getDescricao</td>
-		        <td>@meta.getSemana</td>
-		      </tr>
-		    }
-	    </table>
-	     -->
-	  }
-	  <hr>
-	  <a href="@routes.Application.mainMeta">Organizador de Metas2</a>
+@main("Welcome to Play") {
+
+    @play20.welcome(message, style = "Java")
+
 }
